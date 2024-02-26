@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
@@ -60,7 +61,7 @@ class _VideoCardState extends State<VideoCard> {
         ),
       )
       ..loadRequest(Uri.parse(
-          "http://localhost:5173/results?search_query=${widget.keyword}"));
+          "${dotenv.env["SERVER_BASE_URL"]}/results?search_query=${widget.keyword}"));
 
     _controller = controller;
   }

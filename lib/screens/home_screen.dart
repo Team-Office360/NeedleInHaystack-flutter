@@ -67,7 +67,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               child: SizedBox(
-                width: 330,
+                width: 280,
                 height: 50,
                 child: TextField(
                   controller: textController,
@@ -80,7 +80,7 @@ class HomeScreenState extends State<HomeScreen> {
                       borderSide: BorderSide.none,
                     ),
                     contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 35,
+                      horizontal: 30,
                     ),
                   ),
                 ),
