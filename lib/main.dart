@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import "package:flutter/material.dart";
+import "package:needle_in_haystack_flutter/screens/home_screen.dart";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const App());
 }
 
@@ -15,53 +17,10 @@ class App extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 55, horizontal: 20),
-          child: WebView(),
+          padding: EdgeInsets.fromLTRB(20, 55, 20, 10),
+          child: HomeScreen(),
         ),
       ),
-    );
-  }
-}
-
-class WebView extends StatefulWidget {
-  const WebView({
-    super.key,
-  });
-
-  @override
-  State<WebView> createState() => _WebViewState();
-}
-
-class _WebViewState extends State<WebView> {
-  late WebViewController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {},
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse("http://localhost:5173"));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: size.width,
-      height: size.height,
-      child: WebViewWidget(controller: controller),
     );
   }
 }
